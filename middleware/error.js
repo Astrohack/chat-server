@@ -1,0 +1,1 @@
+exports.catch_errors = action => (req, res, next) =>  action(req, res).catch(next)
