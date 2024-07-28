@@ -6,8 +6,25 @@ export interface Community {
 
 export interface User {
     id: number;
-    nick: string;
+    username: string;
     avatar: string;
+}
+
+export interface UserDTO {
+    id: number;
+    username: string;
+    email: string;
+    password: string;
+    avatar: string;
+}
+
+export interface UserEditOptions {
+    username?: string;
+}
+
+export interface UserPasswordDTO {
+    id: number
+    password: string;
 }
 
 export interface Channel {
@@ -22,7 +39,7 @@ export interface Message {
     created: string;
     channel_id: number;
     reference: Message;
-    attachments: Attachment[] | null
+    attachments: Attachment[] | undefined
 }
 
 export interface MessageDataObject {
@@ -37,7 +54,7 @@ export interface MessageDataObject {
 export interface PostDataObject {
     id: number;
     author_id: number;
-    community_id: number | null;
+    community_id: number | undefined;
     content: string;
     has_attachment: boolean;
     created: string;

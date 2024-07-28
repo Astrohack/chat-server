@@ -1,9 +1,8 @@
-const config = require('./config/default.json')
-require('./router.ts');
+/*require('./router.ts');
 
 
 
-/*const request = {};
+const request = {};
 
 
 request.login = (req, con) => {
@@ -209,11 +208,6 @@ function convert(json) {
     }
 }
 
-// {"req":"GETMSG","channel_id":"1","amount":10,"offset":0,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA1MDI0OTk2fQ.yih1IVtxL9BYWDD4b5BlJ2KX8y8QPdTke9mnLCMwHZ4"}
-// {"req":"DELMSG","channel_id":"1","mid":12,"token":""}
-// {"req":"EDITMSG","channel_id":"1","mid":2,"content":"","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjA1MDI1NTUyfQ.Tuxx0LmM1JY6Y-9Eg4dI6dd3ZiwVltvOyy11Um32EZY"}
-// {"req":"sendMsg","channel_id":"1","content":"Witaj komendancie!3"}
-// {"req":"login","email":"john@gg.pl","passwd":"123"}
 
 class Connection {
     constructor(socket) {
@@ -293,7 +287,7 @@ async function resolve(data, con) {
 
 /*function get_file(req, con) {
 
-}*/
+}
 
 /////////////////////////////////////////////////
 
@@ -376,7 +370,7 @@ async function login(req, con) {
             answer({ req: requests.sendToken, token: token }, con);
             console.log(con.account.nick + " just logged in");
         }
-    }).catch(er => { answer(er, con) });*/
+    }).catch(er => { answer(er, con) });
     user.byEmail(req.email).then(res => {
         if (res.password == req.passwd) {
             con.session = new Session(res);
@@ -402,3 +396,4 @@ function joinChannels(con) {
 }
 
 /////////////////////////////////////////////////
+*/

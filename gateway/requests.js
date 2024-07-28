@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const key = "malphite";
 const PubSub = require('pubsub-js');
-const Account = require('./services/accountService')
+const Account = require('../services/accountService')
 const { setSubscribtions } = require('./lib/subscriber')
 const {Ready, Error} = require('./resources/gatewayResponses')
 

@@ -1,5 +1,4 @@
 import PostsService from '@/services/postService';
-import Gateway from '@/gateway';
 
 export async function get_posts({
         body: {
@@ -33,8 +32,5 @@ export async function create_post({
     }, []);
     const post_id = await PostsService.create_post(user_id, community_id, content, files, tags);
     const post = PostsService.get_post(post_id);
-    Gateway.send('community.' + community_id, 'POST_CREATED', {
-        post
-    });
     res.send();
 }

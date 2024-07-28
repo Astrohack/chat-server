@@ -1,10 +1,11 @@
 import WebSocket from 'ws';
-import config from './config';
 import jwt from 'jsonwebtoken';
-import { community_ids } from './services/accountService';
-import SessionManager from './sessionManager';
-import PubSub from 'pubsub-js';
+import { community_ids } from '@/services/accountService';
+import SessionManager from '@/sessionManager';
 import { Socket } from 'net';
+
+import config from '@/config';
+import logger from '@/utils/logger';
 
 interface Gateway {
     session_manager: SessionManager;
@@ -12,20 +13,20 @@ interface Gateway {
     wss: WebSocket
 }
 
+//TODO: Move functionality to seperate server
 class Gateway {
 
     constructor(){
-        this.session_manager = new SessionManager()
+        this.session_manager; // new SessionManager()
         this.sessions = {}
         this.wss = new WebSocket.Server({
             port: config.websocketPort
         });
-        this.init()
     }
     
     init() {
         this.wss.on('listening', e => {
-            console.log("websockets are listening on port " + config.websocketPort)
+            logger.info("websockets are listening on port " + config.websocketPort)
         })
         this.wss.on('connection', (socket: Socket & {user_id: number | null}, request) => {
             socket.user_id = null
@@ -34,7 +35,7 @@ class Gateway {
         })
     }
 
-    async onMessage(socket, payload) {
+    private async onMessage(socket, payload) {
         try {
             const {data, type } = JSON.parse(payload);
             if(!type || !data) throw new Error("Invalid payload structure, missing 'type' or 'data' ");
@@ -52,16 +53,16 @@ class Gateway {
         }
     }
 
-    onDisconnect(socket) {
+    private onDisconnect(socket) {
         if (!socket.user_id) return
         this.session_manager.clear_subscriptions(socket.user_id)
     }
 
     send(topic: string, type, payload) {
-        PubSub.publish(topic, JSON.stringify({
+        /*PubSub.publish(topic, JSON.stringify({
             type: type,
             data: payload
-        }))
+        }))*/
     }
 }
 

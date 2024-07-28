@@ -1,3 +1,2 @@
-export * from './accountService';
-export * from './channelService';
-export * from './communityService';
+export * as account from './accountService';
+export * as channel from './channelService';

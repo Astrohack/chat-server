@@ -1,9 +1,5 @@
 import Channel from '../services/channelService'
-import Gateway from '../gateway'
 import { NotFoundError, BadRequestError } from '../lib/errors'
-import communityService from '@/services/communityService';
-
-
 
 export async function getMessages({
     channel_id,
@@ -29,9 +25,8 @@ export async function createMessage({
     const message_id = await Channel.create_message(parseInt(channel_id), parseInt(user_id), reference_id, content, files);
     const message = await Channel.get_message(message_id);
     res.send();
-    const community_id = await communityService.get_by_channel_id(channel_id)
-    Gateway.send("community." + community_id, "MESSAGE_CREATE", message);
-    
+    /*const community_id = await communityService.get_by_channel_id(channel_id)
+    Gateway.send("community." + community_id, "MESSAGE_CREATE", message);*/   
 }
 
 export async function editMessage({
@@ -45,13 +40,13 @@ export async function editMessage({
 }, res) {
     if (!message_id || !content) throw new BadRequestError("Missing parameters")
     const timestamp  = await Channel.edit_message(message_id, content)
-    const community_id = await communityService.get_by_channel_id(channel_id)
+    /*const community_id = await communityService.get_by_channel_id(channel_id)
     Gateway.send("community."  + community_id, "MESSAGE_EDIT", {
         id: parseInt(message_id),
         content: content,
         timestamp: timestamp,
         channel_id: parseInt(channel_id)
-   })
+   })*/
    res.send()
 }
 
@@ -63,11 +58,11 @@ export async function deleteMessage({
 }, res) {
     if (isNaN(message_id)) throw new BadRequestError("Incorrect message id")
     await Channel.delete_message(message_id, channel_id)
-    const community_id = await communityService.get_by_channel_id(channel_id)
+    /*const community_id = await communityService.get_by_channel_id(channel_id)
     Gateway.send("community." + community_id, "MESSAGE_DELETE", {
         id: parseInt(message_id),
         channel_id: parseInt(channel_id)
-    })
+    })*/
     res.send()
 }
 

@@ -1,12 +1,12 @@
-const router = require('express').Router({ mergeParams: true });
-const accountRoute = require('../controllers/account');
-const { catch_errors } = require('../middleware/error');
-const upload = require('../multer').uploadAvatar;
+import { Router } from 'express';
+import * as accountRoute from '@/controllers/account';
+import { catch_errors } from '../middleware/error';
+import { uploadAvatar } from '@/multer';
 
-//router.get('/me/channels', catch_errors(accountRoute.get_channels))
-router.get('/me/communities', catch_errors(accountRoute.get_communities))
+const router = Router({ mergeParams: true });
+
 router.get('/me', catch_errors(accountRoute.profile))
-router.post('/avatar', upload.single('file'), accountRoute.set_avatar)
 
+router.post('/me/avatar', uploadAvatar.single('file'), accountRoute.set_avatar)
 
 export const userRouter = router

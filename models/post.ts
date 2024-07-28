@@ -1,6 +1,6 @@
-import query from "@/database/database"
+import query from "@/database"
 import { Attachment, PostDataObject } from "@/lib/types";
-
+/*
 type PostProps = {
     community_id: number;
     amount: number;
@@ -48,4 +48,4 @@ export default {
     },
 
 
-}
+}*/

@@ -1,8 +1,8 @@
 import { Router } from 'express';
 const upload = require('../multer').uploadAttachment;
-import { get_posts, create_post } from '../controllers/posts';
-import { check_perms } from '../middleware/auth';
-import { catch_errors } from '../middleware/error';
+import { get_posts, create_post } from '@/controllers/posts';
+import { authorize } from '@/middleware/auth';
+import { catch_errors } from '@/middleware/error';
 
 const router = Router({ mergeParams: true });
 

@@ -1,4 +1,5 @@
-var multer = require('./node_modules/multer')
+import multer from 'node_modules/multer'
+import '@types/multer'
 var path = require('path')
 var attachmentStorage = multer.diskStorage({    
     destination: function (req, file, cb) {
@@ -18,14 +19,10 @@ var avatarStorage = multer.diskStorage({
     }
 })
 
-var uploadAttachment = multer({
+export const uploadAttachment = multer({
     storage: attachmentStorage,
 })
-var uploadAvatar = multer({
+export const uploadAvatar = multer({
     storage: multer.memoryStorage(),
 })
 
-module.exports = {
-    uploadAttachment,
-    uploadAvatar,
-}
