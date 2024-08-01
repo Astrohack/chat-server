@@ -12,6 +12,7 @@
     "apiPort": 6426,
     "websocketPort": 4000,
     "cors": "http://localhost:4000/",
-    "serverId": "0000"
+    "serverId": "0000",
+    "logLevel":"silly"
 
 }

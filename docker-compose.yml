@@ -15,12 +15,13 @@ services:
     ports:
       - ${API_PORT}:${API_PORT}
     command: sleep infinity
+    restart: unless-stopped
 
 
   db:
     image: postgres
     container_name: verba_database
-    restart: always
+    restart: unless-stopped
     # shared memory limit
     shm_size: 128mb
     environment:
@@ -36,7 +37,7 @@ services:
   adminer:
     image: adminer
     container_name: verba_adminer
-    restart: always
+    restart: unless-stopped
     ports:
       - ${DB_WEB_ADMIN_PORT}:8080
 

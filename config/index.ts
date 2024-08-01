@@ -16,7 +16,8 @@ export interface Config {
     }, 
     host: string,
     apiPort: number,
-    serverId: string
+    serverId: string,
+    logLevel: string,
 }
 const config: Config = config_file as any
 
@@ -27,10 +28,11 @@ config.database = {
     port: parseInt(process.env.DB_PORT as string) ?? config.database.port,
     user: process.env.DB_USER as string ?? config.database.user,
     dbname: process.env.DB_DBNAME as string ?? config.database.dbname,
-}
-config.apiPort = parseInt(process.env.API_PORT as string) ?? config.apiPort
-config.host = process.env.API_HOST as string ?? config.host
-config.serverId = process.env.SERVER_ID as string ?? config.serverId
+};
+config.apiPort = parseInt(process.env.API_PORT as string) ?? config.apiPort;
+config.host = process.env.API_HOST as string ?? config.host;
+config.serverId = process.env.SERVER_ID as string ?? config.serverId;
+config.logLevel = process.env.LOG_LEVEL as string ?? config.logLevel;
 
-export default config
-export { config  }
+export default config;
+export { config  };
